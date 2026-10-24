@@ -227,12 +227,12 @@ s32 BmpMenuList_GetOptionValue(BmpMenuList *list, u16 index) {
     return list->header.options[index].value;
 }
 
-s32 BmpMenuList_GetParam(BmpMenuList *list, u8 param) {
+sptr BmpMenuList_GetParam(BmpMenuList *list, u8 param) {
     switch (param) {
     case BMPMENULIST_PARAM_CURSOR_CALLBACK:
-        return (s32)list->header.cursorCallback;
+        return (sptr)list->header.cursorCallback;
     case BMPMENULIST_PARAM_PRINT_CALLBACK:
-        return (s32)list->header.printCallback;
+        return (sptr)list->header.printCallback;
     case BMPMENULIST_PARAM_COUNT:
         return list->header.count;
     case BMPMENULIST_PARAM_MAX_SHOWN:
@@ -268,7 +268,7 @@ s32 BmpMenuList_GetParam(BmpMenuList *list, u8 param) {
     case BMPMENULIST_PARAM_18:
         break;
     case BMPMENULIST_PARAM_WORK:
-        return (s32)list->header.work;
+        return (sptr)list->header.work;
     }
     return -1;
 }

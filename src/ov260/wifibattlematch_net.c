@@ -1707,7 +1707,7 @@ static void WifiBattleMatchNet_OnPersonReceived(int netId, int size, const void 
             StrBuf *name = GFL_MsgDataLoadStrbufNew(msgData, WBM_DEFAULT_NAME);
 
             GFL_MsgDataFree(msgData);
-            JoinAvenuePerson_SetParam(person, JOIN_AVE_PARAM_NAME, (u32)GFL_StrBufGetStringPtr(name));
+            JoinAvenuePerson_SetParam(person, JOIN_AVE_PARAM_NAME, (uptr)GFL_StrBufGetStringPtr(name));
             GFL_StrBufFree(name);
         }
         JoinAvenue_Add(joinAvenue, p_wk->gameData, person, 1);

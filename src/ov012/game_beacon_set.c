@@ -574,7 +574,7 @@ static void GameBeacon_FillThanks(GameBeacon *info, GameData *gameData, u16 valu
 
 void GameBeacon_BroadcastPhrase(StrBuf *name, u8 value) {
     if (GameBeaconSys_AddMissionScore(0x2d, 0)) {
-        GameBeaconSendSlot_SetMissionEx(&GameBeaconSys->mine, 0x67, (u32)name, value);
+        GameBeaconSendSlot_SetMissionEx(&GameBeaconSys->mine, 0x67, (uptr)name, value);
     } else if (GameBeaconSys_CanSendType(0x31)) {
         GameBeaconSendSlot_Reset(&GameBeaconSys->mine);
         GameBeacon_FillPhrase(&GameBeaconSys->mine.beacon, name, value);

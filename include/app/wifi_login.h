@@ -42,8 +42,8 @@ typedef struct {
     u32 unk8;
     u32 unkC;
     u32 unk10;
-    u32 unk14;
-    u32 unk18;
+    uptr unk14;
+    uptr unk18;
 } WifiLogoutParam;
 
 extern const GameProcFunctions WIFILOGIN_PROC_FUNCTIONS;

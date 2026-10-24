@@ -169,7 +169,7 @@ static u32 mergeData(MemoryLinkSave *link, const MemoryLinkData *data, SaveContr
            (changed[MEMORY_LINK_PART_UNK2C] << 2);
 }
 
-u32 MemoryLinkSave_GetValue(MemoryLinkSave *link, u32 kind, void *dest) {
+uptr MemoryLinkSave_GetValue(MemoryLinkSave *link, u32 kind, void *dest) {
     switch (kind) {
     case MEMORY_LINK_KIND_MUSICAL_TOTAL_POINTS:
         return link->memories.musicalTotalPoints;
@@ -191,12 +191,12 @@ u32 MemoryLinkSave_GetValue(MemoryLinkSave *link, u32 kind, void *dest) {
             MI_CpuCopy8(&link->players[kind - MEMORY_LINK_KIND_PLAYER_0], dest, sizeof(MemoryLinkPlayer));
         }
         // Not the player's address but the first one's, whichever was asked for
-        return (u32)link;
+        return (uptr)link;
     case MEMORY_LINK_KIND_PROPS:
         if (dest != NULL) {
             MI_CpuCopy8(link->memories.props, dest, sizeof(link->memories.props));
         }
-        return (u32)link->memories.props;
+        return (uptr)link->memories.props;
     }
     return 0;
 }

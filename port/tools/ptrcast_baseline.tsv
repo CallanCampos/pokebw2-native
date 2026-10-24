@@ -197,27 +197,14 @@ src/gfl/gf_overlay.c	GFL_OvlGetMemoryRegion	ptr-to-int	u32 <- u8 *	1	handled	por
 src/gfl/heapsys.c	GFL_HeapGetSize	ptr-to-int	u32 <- NNSiFndHeapHead *	1	harmless	a difference of two addresses in one block (a heap block's head and data)
 src/gfl/heapsys.c	GFL_HeapGetSize	ptr-to-int	u32 <- void *	1	harmless	a difference of two addresses in one block (a heap block's head and data)
 src/gfl/net_state.c	NetState_ConnectMac	ptr-to-int	u32 <- u8 *	1	harmless	an alignment or low-bit test: the low bits are the host address's
-src/ov011/net_devwifi.c	NetDevWifi_Start	int-to-ptr	DWCFriendData * <- int	1	real	R22: Wi-Fi game code: DWC user and friend data as int, login buffers, callbacks in u32 fields (phase 7)
-src/ov011/net_devwifi.c	NetDevWifi_Start	int-to-ptr	void * <- int	1	real	R22: Wi-Fi game code: DWC user and friend data as int, login buffers, callbacks in u32 fields (phase 7)
 src/ov011/net_devwifi.c	NetDevWifi_Unk4C	int-to-ptr	const char * <- int	1	real	R22: Wi-Fi game code: DWC user and friend data as int, login buffers, callbacks in u32 fields (phase 7)
-src/ov012/game_beacon_set.c	GameBeacon_BroadcastPhrase	ptr-to-int	u32 <- StrBuf *	1	real	R15: the Funfest beacon mission's StrBuf * in a u32 value
-src/ov012/scrcmd_download_data.c	s02B7_MemoryLinkAddMusicalProps	int-to-ptr	const u8 * <- u32	1	real	R16: the Memory Link getter (MemoryLinkSave_GetValue) returns pointers as u32
 src/ov012/script_plugin.c	GetCurrentScrPluginCmdCount	ptr-to-int	u32 <- FieldScriptCommand	1	harmless	a compare with the sentinel (u32)-1
-src/ov023/event_pokewood.c	EventPokewood_InitTitleParam	ptr-to-int	u32 <- PartyPkm *	1	real	R17: Pokestar Studios' Pokewood_GetLoadedMovieField takes a PartyPkm * as u32 a1
-src/ov028/union_comm.c	UnionComm_SetSelf	int-to-ptr	UnionBeaconEntry * <- u32	4	real	R21: the Union Room's UnionComm_SetSelf u32 value and menu values (phase 7)
 src/ov034/union_msg.c	UnionMsg_UpdateRuleMenu	int-to-ptr	const ListMenuRow * <- u32	1	real	R21: the Union Room's UnionComm_SetSelf u32 value and menu values (phase 7)
 src/ov034/union_msg.c	UnionMsg_UpdateRuleMenu	ptr-to-int	u32 <- const ListMenuRow *	2	real	R21: the Union Room's UnionComm_SetSelf u32 value and menu values (phase 7)
-src/ov034/union_oneself.c	UnionOneself_CheckParentEntry	ptr-to-int	u32 <- UnionBeaconEntry *	2	real	R21: the Union Room's UnionComm_SetSelf u32 value and menu values (phase 7)
-src/ov034/union_oneself.c	UnionOneself_StepAskRun	ptr-to-int	u32 <- UnionBeaconEntry *	1	real	R21: the Union Room's UnionComm_SetSelf u32 value and menu values (phase 7)
-src/ov034/union_oneself.c	UnionOneself_StepAskedRun	ptr-to-int	u32 <- UnionBeaconEntry *	1	real	R21: the Union Room's UnionComm_SetSelf u32 value and menu values (phase 7)
-src/ov034/union_oneself.c	UnionOneself_StepIdleRun	ptr-to-int	u32 <- UnionBeaconEntry *	2	real	R21: the Union Room's UnionComm_SetSelf u32 value and menu values (phase 7)
-src/ov034/union_oneself.c	UnionOneself_StepRecruitRun	ptr-to-int	u32 <- UnionBeaconEntry *	1	real	R21: the Union Room's UnionComm_SetSelf u32 value and menu values (phase 7)
-src/ov036/shortcut_menu.c	OnListCursor	int-to-ptr	ShortcutMenuList * <- s32	1	real	R02: BmpMenuList_GetParam returns the list's work pointer and callbacks as s32 (the Y button's shortcut menu)
-src/ov036/shortcut_menu.c	RedrawHighlight	int-to-ptr	ShortcutMenuList * <- s32	1	real	R02: BmpMenuList_GetParam returns the list's work pointer and callbacks as s32 (the Y button's shortcut menu)
-src/ov084/beacon_view_setup.c	BeaconView_CreateEvent	ptr-to-int	u32 <- AppTaskMenuWin *	6	real	R14: the C-Gear passersby log's and Funfest view's wait events carry an AppTaskMenuWin * in a u32 param
-src/ov084/beacon_view_setup.c	BeaconView_WaitMenuButton	int-to-ptr	AppTaskMenuWin * <- u32	1	real	R14: the C-Gear passersby log's and Funfest view's wait events carry an AppTaskMenuWin * in a u32 param
-src/ov085/fmission_view_setup.c	FMissionViewSetup_CallMenuButton	int-to-ptr	AppTaskMenuWin * <- u32	1	real	R14: the C-Gear passersby log's and Funfest view's wait events carry an AppTaskMenuWin * in a u32 param
-src/ov085/fmission_view_setup.c	FMissionViewSetup_CheckEvent	ptr-to-int	u32 <- AppTaskMenuWin *	4	real	R14: the C-Gear passersby log's and Funfest view's wait events carry an AppTaskMenuWin * in a u32 param
+src/ov036/shortcut_menu.c	RedrawHighlight	narrow	u32 <- sptr	1	harmless	BmpMenuList_GetParam's results for the list's Y and row height, numbers; its sptr return carries an address only for the callbacks and the work
+src/ov084/beacon_view_setup.c	BeaconView_WaitButton	narrow	int <- uptr	2	harmless	the event's param is a button index for EVENT_WAIT_BUTTON; it holds a menu button's address only for EVENT_WAIT_MENU_BUTTON
+src/ov085/fmission_view_setup.c	FMissionViewSetup_CallButton	narrow	int <- uptr	1	harmless	the call's param is a FMISSION_VIEW_BUTTON_ for CALL_BUTTON; it holds a menu button's address only for CALL_MENU_BUTTON
+src/ov085/fmission_view_setup.c	FMissionViewSetup_CallButton	narrow	u32 <- uptr	1	harmless	the call's param is a FMISSION_VIEW_BUTTON_ for CALL_BUTTON; it holds a menu button's address only for CALL_MENU_BUTTON
 src/ov137/resort_data_manager.c	sFuncs	fn-cast	ResortPersonGetParamFunc <- uptr (*)(JoinAvenueEntry *, JoinAvenuePersonParam, void *)	1	real	R05: overlay 137's ResortPerson get and set function types still return and take a u32 where Join Avenue's getters and setters carry a uptr (PR 14): the getters' addresses are cut, and the setters read a high half the caller leaves undefined; today's callers pass numbers and copy names through the buffer
 src/ov137/resort_data_manager.c	sFuncs	fn-cast	ResortPersonGetParamFunc <- uptr (*)(JoinAvenueRecord *, JoinAvenuePersonParam, void *)	1	real	R05: overlay 137's ResortPerson get and set function types still return and take a u32 where Join Avenue's getters and setters carry a uptr (PR 14): the getters' addresses are cut, and the setters read a high half the caller leaves undefined; today's callers pass numbers and copy names through the buffer
 src/ov137/resort_data_manager.c	sFuncs	fn-cast	ResortPersonGetParamFunc <- uptr (*)(const JoinAvenuePerson *, JoinAvenuePersonParam, void *)	2	real	R05: overlay 137's ResortPerson get and set function types still return and take a u32 where Join Avenue's getters and setters carry a uptr (PR 14): the getters' addresses are cut, and the setters read a high half the caller leaves undefined; today's callers pass numbers and copy names through the buffer
@@ -241,41 +228,14 @@ src/ov168/btlv_mcss.c	BtlvMcss_OnAnimationEnd	narrow	s32 <- uptr	1	harmless	the 
 src/ov169/pos_handlers.c	PosEventAdd	ptr-to-int	BOOL <- BattleEventItem *	1	harmless	(BOOL)item, a null test of an item of the battle's static event pool: false only for an item whose address's low 32 bits are 0, at a 4 GiB boundary of the program's static data
 src/ov169/side_handlers.c	HandlerSideQuickGuard	int-to-ptr	BattleHandlerString * <- u32	1	real	R06: battle event variable 0x3f keeps a BattleHandlerString * in s32 values[]
 src/ov169/side_handlers.c	HandlerSideWideGuard	int-to-ptr	BattleHandlerString * <- u32	1	real	R06: battle event variable 0x3f keeps a BattleHandlerString * in s32 values[]
-src/ov173/wifi_p2pmatch.c	WifiP2PMatch_GetFriendData	ptr-to-int	int <- DWCFriendData *	1	real	R22: Wi-Fi game code: DWC user and friend data as int, login buffers, callbacks in u32 fields (phase 7)
-src/ov173/wifi_p2pmatch.c	WifiP2PMatch_GetUserData	ptr-to-int	int <- DWCUserData *	1	real	R22: Wi-Fi game code: DWC user and friend data as int, login buffers, callbacks in u32 fields (phase 7)
-src/ov190/wifilogin.c	WifiLogin_GetFriendData	ptr-to-int	int <- DWCFriendData *	1	real	R22: Wi-Fi game code: DWC user and friend data as int, login buffers, callbacks in u32 fields (phase 7)
-src/ov190/wifilogin.c	WifiLogin_GetUserData	ptr-to-int	int <- DWCUserData *	1	real	R22: Wi-Fi game code: DWC user and friend data as int, login buffers, callbacks in u32 fields (phase 7)
-src/ov194/pokemontrade_save.c	func_ov194_021bf868	ptr-to-int	u32 <- PartyPkm *	1	real	R09: CheckEvolveSpecies' u32 a3 is the trade partner's PartyPkm *
-src/ov195/gtsnego_proc.c	GtsNego_OnRecvPerson	ptr-to-int	u32 <- u16 *	1	real	R05: a name's address cut by (u32) before Join Avenue's uptr setter (PR 14 retyped the setters, not these callers)
-src/ov197/mystery.c	Mystery_CreateList	int-to-ptr	StrBuf * <- u32	2	real	R11: the Mystery Gift list's setup.items[] (u32) keeps StrBuf *
-src/ov197/mystery.c	Mystery_CreateList	ptr-to-int	u32 <- StrBuf *	1	real	R11: the Mystery Gift list's setup.items[] (u32) keeps StrBuf *
-src/ov197/mystery_util.c	MysteryList_Create	int-to-ptr	StrBuf * <- u32	1	real	R11: the Mystery Gift list's setup.items[] (u32) keeps StrBuf *
-src/ov214/worldtrade_demo.c	WorldTrade_Demo_Main	ptr-to-int	u32 <- PartyPkm *	2	real	R09: CheckEvolveSpecies' u32 a3 is the trade partner's PartyPkm *
-src/ov214/worldtrade_enter.c	Enter_WifiConnectionLogout	ptr-to-int	u32 <- WorldTradeWork *	1	real	R22: Wi-Fi game code: DWC user and friend data as int, login buffers, callbacks in u32 fields (phase 7)
-src/ov214/worldtrade_enter.c	Enter_WifiConnectionLogout	ptr-to-int	u32 <- int (*)(void *, void *)	1	real	R22: Wi-Fi game code: DWC user and friend data as int, login buffers, callbacks in u32 fields (phase 7)
-src/ov260/wifibattlematch_net.c	WifiBattleMatchNet_OnPersonReceived	ptr-to-int	u32 <- const u16 *	1	real	R05: a name's address cut by (u32) before Join Avenue's uptr setter (PR 14 retyped the setters, not these callers)
-src/ov271/br_net.c	BrNet_Init	int-to-ptr	void * <- u32	1	real	R22: Wi-Fi game code: DWC user and friend data as int, login buffers, callbacks in u32 fields (phase 7)
-src/ov323/pkwd_selectscreen.c	PkwdSelectScreen_LoadMovies	ptr-to-int	u32 <- PartyPkm *	2	real	R17: Pokestar Studios' Pokewood_GetLoadedMovieField takes a PartyPkm * as u32 a1
-src/ov326/t_download_save.c	TDownloadSave_LoadReceived	int-to-ptr	TDownloadTournament * <- u32	1	real	R22: Wi-Fi game code: DWC user and friend data as int, login buffers, callbacks in u32 fields (phase 7)
-src/ov327/wbt_download_sys.c	WbtDownload_SetupTournaments	ptr-to-int	u32 <- void *	1	real	R22: Wi-Fi game code: DWC user and friend data as int, login buffers, callbacks in u32 fields (phase 7)
-src/system/battle_video_proc.c	BattleVideo_Main	ptr-to-int	u32 <- u8 *	1	real	R22: Wi-Fi game code: DWC user and friend data as int, login buffers, callbacks in u32 fields (phase 7)
-src/system/bmp_menulist.c	BmpMenuList_GetParam	ptr-to-int	s32 <- BmpMenuListCursorCallback	1	real	R02: BmpMenuList_GetParam returns the list's work pointer and callbacks as s32 (the Y button's shortcut menu)
-src/system/bmp_menulist.c	BmpMenuList_GetParam	ptr-to-int	s32 <- BmpMenuListPrintCallback	1	real	R02: BmpMenuList_GetParam returns the list's work pointer and callbacks as s32 (the Y button's shortcut menu)
-src/system/bmp_menulist.c	BmpMenuList_GetParam	ptr-to-int	s32 <- void *	1	real	R02: BmpMenuList_GetParam returns the list's work pointer and callbacks as s32 (the Y button's shortcut menu)
-src/system/dwc_friend.c	DWCFriend_UpdateFriendData	int-to-ptr	DWCFriendData * <- int	1	real	R22: Wi-Fi game code: DWC user and friend data as int, login buffers, callbacks in u32 fields (phase 7)
-src/system/dwc_friend.c	findFriendData	int-to-ptr	DWCFriendData * <- int	1	real	R22: Wi-Fi game code: DWC user and friend data as int, login buffers, callbacks in u32 fields (phase 7)
-src/system/dwc_friend.c	findFriendData	int-to-ptr	DWCUserData * <- int	1	real	R22: Wi-Fi game code: DWC user and friend data as int, login buffers, callbacks in u32 fields (phase 7)
-src/system/game_beacon.c	GameBeaconSendSlot_SetMissionEx	int-to-ptr	const StrBuf * <- u32	1	real	R15: the Funfest beacon mission's StrBuf * in a u32 value
-src/system/memory_link_savedata.c	MemoryLinkSave_GetValue	ptr-to-int	u32 <- MemoryLinkSave *	1	real	R16: the Memory Link getter (MemoryLinkSave_GetValue) returns pointers as u32
-src/system/memory_link_savedata.c	MemoryLinkSave_GetValue	ptr-to-int	u32 <- u8 *	1	real	R16: the Memory Link getter (MemoryLinkSave_GetValue) returns pointers as u32
+src/ov197/mystery_util.c	MysteryList_Create	narrow	u32 <- const uptr	1	harmless	a message ID: the setup's items are StrBufs only when it has no msgData, and this branch has one
+src/ov197/mystery_util.c	MysteryYesNo_Update	narrow	s32 <- sptr	1	harmless	BmpMenuList_GetParam's result for the item count (param 2), a number
 src/system/poke_tool.c	PML_PkmSetParamCore	narrow	int <- uptr	6	harmless	the setter's uptr value is an integer for these parameters
 src/system/poke_tool.c	PML_PkmSetParamCore	narrow	u32 <- uptr	11	harmless	the setter's uptr value is an integer for these parameters
 src/system/poke_tool.c	PokeParty_SetParamCore	narrow	u32 <- uptr	1	harmless	the setter's uptr value is an integer for these parameters
-src/system/pokewood_rec.c	Pokewood_GetLoadedMovieField	int-to-ptr	PartyPkm * <- u32	1	real	R17: Pokestar Studios' Pokewood_GetLoadedMovieField takes a PartyPkm * as u32 a1
 src/system/printsys.c	PrintQueue_Main	ptr-to-int	u32 <- TextRenderer *	1	harmless	a difference of two addresses in one block
 src/system/printsys.c	PrintQueue_Main	ptr-to-int	u32 <- u8 *	1	harmless	a difference of two addresses in one block
 src/system/resonance_resort_data.c	JoinAvenueEntry_SetParam	narrow	u32 <- uptr	1	harmless	the number a uptr setter is given for a field that holds numbers
 src/system/resonance_resort_data.c	JoinAvenueInfo_SetParam	narrow	u32 <- uptr	21	harmless	the number a uptr setter is given for a field that holds numbers
 src/system/resonance_resort_data.c	JoinAvenuePerson_SetParam	narrow	u32 <- uptr	22	harmless	the number a uptr setter is given for a field that holds numbers
 src/system/resonance_resort_data.c	JoinAvenueRecord_SetParam	narrow	u32 <- uptr	1	harmless	the number a uptr setter is given for a field that holds numbers
-src/system/shinka_check.c	CheckEvolveSpecies	int-to-ptr	PartyPkm * <- u32	3	real	R09: CheckEvolveSpecies' u32 a3 is the trade partner's PartyPkm *

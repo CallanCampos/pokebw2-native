@@ -334,7 +334,7 @@ typedef struct {
 
 typedef struct {
     GameSystem *gsys;
-    u32 unk4;
+    uptr unk4;
     u32 unk8;
     u16 *unkC;
     u16 *unk10;

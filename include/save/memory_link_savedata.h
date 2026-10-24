@@ -73,7 +73,7 @@ BOOL MemoryLinkSave_Merge(MemoryLinkSave *link, const MemoryLinkData *data, Save
 // save would change
 BOOL MemoryLinkSave_CanMerge(MemoryLinkSave *link, const MemoryLinkData *data, SaveControl *save);
 // A value of a kind, MEMORY_LINK_KIND_*, copied to dest for some kinds
-u32 MemoryLinkSave_GetValue(MemoryLinkSave *link, u32 kind, void *dest);
+uptr MemoryLinkSave_GetValue(MemoryLinkSave *link, u32 kind, void *dest);
 // A flag and a variable of the memories
 BOOL MemoryLinkSave_IsMemoryFlagSet(MemoryLinkSave *link, int index);
 u16 MemoryLinkSave_GetVar(MemoryLinkSave *link, u32 index);

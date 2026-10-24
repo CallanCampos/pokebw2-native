@@ -9,7 +9,7 @@
 
 // The Battle Recorder's connection to the Global Link (br_net.c), used by its online modes
 
-BrNet *BrNet_Init(GameData *gameData, u32 a1, HeapID heapId);
+BrNet *BrNet_Init(GameData *gameData, uptr a1, HeapID heapId);
 void BrNet_Exit(BrNet *net);
 void BrNet_Main(BrNet *net);
 

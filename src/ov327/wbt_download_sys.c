@@ -297,7 +297,7 @@ static void *WbtDownload_SetupTournaments(HeapID heapId, WbtDownloadWork *wk, u3
     WbtOv326Param2 *tournaments = GFL_HeapAllocate(heapId, sizeof(WbtOv326Param2), TRUE, "wbt_download_sys.c", 673);
 
     tournaments->gsys = wk->param->gsys;
-    tournaments->unk4 = (u32)wk->buffer;
+    tournaments->unk4 = (uptr)wk->buffer;
     tournaments->unk8 = 1;
     return tournaments;
 }

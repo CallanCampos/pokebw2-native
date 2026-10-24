@@ -60,7 +60,7 @@ typedef struct {
     Font *font;
     PrintQueue *queue;
     ClActor *cursor;
-    u32 items[4];
+    uptr items[4];
     u32 count;
     u16 bg;
     u16 palette;

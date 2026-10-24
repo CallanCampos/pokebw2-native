@@ -22,7 +22,7 @@ enum {
 typedef struct {
     u32 mode;
     GameData *gameData;
-    u32 unk8;
+    uptr unk8;
     // 2 when the online connection failed
     u32 result;
 } BattleRecorderParam;

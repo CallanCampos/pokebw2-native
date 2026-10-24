@@ -812,7 +812,7 @@ void GameBeaconSendSlot_SetMission(GameBeaconSendSlot *slot, u16 type, u32 value
     GameBeaconSendSlot_SetMissionEx(slot, type, value, 0);
 }
 
-void GameBeaconSendSlot_SetMissionEx(GameBeaconSendSlot *slot, u16 type, u32 value, u32 extra) {
+void GameBeaconSendSlot_SetMissionEx(GameBeaconSendSlot *slot, u16 type, uptr value, u32 extra) {
     LinkFestival *festival;
     FestMissionConfig *config;
     GameBeaconSendSlot newSlot;

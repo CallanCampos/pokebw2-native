@@ -78,7 +78,7 @@ typedef struct {
     GameEvent *next;
     int type;
     // A FMISSION_VIEW_BUTTON_ for CALL_BUTTON, an AppTaskMenuWin for CALL_MENU_BUTTON
-    u32 param;
+    uptr param;
 } FMissionViewCallEvent;
 
 // How many resources of a kind there are, and the first one's file
@@ -92,7 +92,7 @@ typedef struct {
     u8 y;
 } FMissionViewButtonPos;
 
-static GameEvent *FMissionViewSetup_CreateCallEvent(FMissionView *view, GameEvent *next, int type, u32 param);
+static GameEvent *FMissionViewSetup_CreateCallEvent(FMissionView *view, GameEvent *next, int type, uptr param);
 static GameEventReturnCode FMissionViewSetup_CallEvent(GameEvent *event, u32 *state, void *data);
 static BOOL FMissionViewSetup_CallButton(FMissionView *view, FMissionViewCallEvent *call);
 static BOOL FMissionViewSetup_CallTasks(FMissionView *view, FMissionViewCallEvent *call);
@@ -214,7 +214,7 @@ GameEvent *FMissionViewSetup_CheckEvent(FMissionView *view, BOOL enabled) {
                                                   GameEvent_CreateOverlayDelegate(view->gsys, OVERLAY_FUNFEST_MISSION,
                                                                                   EventFestMissionRetire_Create,
                                                                                   view->field),
-                                                  CALL_MENU_BUTTON, (u32)BeaconViewMenu_GetButton(view->menu, 0));
+                                                  CALL_MENU_BUTTON, (uptr)BeaconViewMenu_GetButton(view->menu, 0));
         break;
     case FMISSION_VIEW_EVENT_PASS_POWER: {
         u32 args = 1;
@@ -234,7 +234,7 @@ GameEvent *FMissionViewSetup_CheckEvent(FMissionView *view, BOOL enabled) {
         event = FMissionViewSetup_CreateCallEvent(
             view,
             GameEvent_CreateOverlayDelegate(view->gsys, OVERLAY_FIELD_PASS_POWER, EventPassPowerActivate_Create, args),
-            CALL_MENU_BUTTON, (u32)BeaconViewMenu_GetButton(view->menu, 1));
+            CALL_MENU_BUTTON, (uptr)BeaconViewMenu_GetButton(view->menu, 1));
         view->usePassPower = PASS_POWER_NONE;
         break;
     }
@@ -243,14 +243,14 @@ GameEvent *FMissionViewSetup_CheckEvent(FMissionView *view, BOOL enabled) {
             view,
             GameEvent_CreateOverlayDelegate(view->gsys, OVERLAY_FIELD_PASS_POWER,
                                             (GameEventProvider)EventPassPowerList_Create, view->field),
-            CALL_MENU_BUTTON, (u32)BeaconViewMenu_GetButton(view->menu, 0));
+            CALL_MENU_BUTTON, (uptr)BeaconViewMenu_GetButton(view->menu, 0));
         break;
     case FMISSION_VIEW_EVENT_PASS_POWER_LIST_9:
         event = FMissionViewSetup_CreateCallEvent(
             view,
             GameEvent_CreateOverlayDelegate(view->gsys, OVERLAY_FIELD_PASS_POWER,
                                             (GameEventProvider)EventPassPowerList_Create, view->field),
-            CALL_MENU_BUTTON, (u32)BeaconViewMenu_GetButton(view->menu, 0));
+            CALL_MENU_BUTTON, (uptr)BeaconViewMenu_GetButton(view->menu, 0));
         view->unk80 = 0;
         break;
     case FMISSION_VIEW_EVENT_GREETING:
@@ -267,7 +267,7 @@ GameEvent *FMissionViewSetup_CheckEvent(FMissionView *view, BOOL enabled) {
     return event;
 }
 
-static GameEvent *FMissionViewSetup_CreateCallEvent(FMissionView *view, GameEvent *next, int type, u32 param) {
+static GameEvent *FMissionViewSetup_CreateCallEvent(FMissionView *view, GameEvent *next, int type, uptr param) {
     GameEvent *event = GameEvent_Create(view->gsys, NULL, FMissionViewSetup_CallEvent, sizeof(FMissionViewCallEvent));
     FMissionViewCallEvent *call = GameEvent_GetData(event);
 

@@ -27,7 +27,7 @@ static u16 EVOLVE_MOSSROCK_ZONES[] = { ZONE_PINWHEEL_FOREST_2 };
 static u16 EVOLVE_ELEC_ZONES[] = { ZONE_CHARGESTONE_CAVE_2, ZONE_CHARGESTONE_CAVE_3, ZONE_CHARGESTONE_CAVE_4 };
 static u16 EVOLVE_ELEC2_ZONES[] = { ZONE_CHARGESTONE_CAVE_2, ZONE_CHARGESTONE_CAVE_3, ZONE_CHARGESTONE_CAVE_4 };
 
-u16 CheckEvolveSpecies(PokeParty *party, PartyPkm *pkm, u32 mode, u32 a3, u8 season, u32 *method, HeapID heapId) {
+u16 CheckEvolveSpecies(PokeParty *party, PartyPkm *pkm, u32 mode, uptr a3, u8 season, u32 *method, HeapID heapId) {
     Evolution *evo;
     u16 species;
     u16 item;

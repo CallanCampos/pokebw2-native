@@ -114,7 +114,7 @@ static BOOL BattleVideo_Main(GameProc *proc, u32 *state, void *param, void *work
         MI_CpuFill8(&wk->sub.recorder, 0, sizeof(BattleRecorderParam));
         wk->sub.recorder.mode = wk->param->mode;
         wk->sub.recorder.gameData = wk->param->gameData;
-        wk->sub.recorder.unk8 = (u32)wk->loginBuffer;
+        wk->sub.recorder.unk8 = (uptr)wk->loginBuffer;
         QueueGameProc(wk->manager, OVERLAY_ID(272), &BR_MAIN_PROC_FUNCTIONS, &wk->sub.recorder);
         (*state)++;
         break;

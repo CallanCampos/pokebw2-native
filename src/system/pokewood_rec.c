@@ -125,7 +125,7 @@ PokewoodBlock *getPokewoodBlock(void) {
     return sBlock;
 }
 
-u32 Pokewood_GetLoadedMovieField(u32 field, u32 a1) {
+u32 Pokewood_GetLoadedMovieField(u32 field, uptr a1) {
     switch (field) {
     case POKEWOOD_BLOCK_FIELD_UNKDF:
         return sBlock->info.unkDF;

@@ -608,7 +608,7 @@ static void func_ov194_021bf868(PokemonTradeWork *wk) {
                 other = PokemonTrade_GetPkm(wk, 0);
             }
             species =
-                CheckEvolveSpecies(NULL, pkm, 1, (u32)other, GameData_GetSeason(wk->gameData), &method, wk->heapId);
+                CheckEvolveSpecies(NULL, pkm, 1, (uptr)other, GameData_GetSeason(wk->gameData), &method, wk->heapId);
             if (species != 0) {
                 wk->param->next = TRADE_NEXT_EVOLVE;
                 wk->param->evolveSpecies = species;

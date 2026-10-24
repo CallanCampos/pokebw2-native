@@ -318,7 +318,7 @@ static void GtsNego_OnRecvPerson(int netId, int size, const void *data, void *wo
         return;
     }
     JoinAvenuePerson_SetParam(person, JOIN_AVE_PARAM_UNK_26, 2);
-    JoinAvenuePerson_SetParam(person, JOIN_AVE_PARAM_NAME, (u32)GetPlayerName(param->playerInfo2));
+    JoinAvenuePerson_SetParam(person, JOIN_AVE_PARAM_NAME, (uptr)GetPlayerName(param->playerInfo2));
     JoinAvenue_Add(joinAvenue, param->gameData, person, 1);
 }
 

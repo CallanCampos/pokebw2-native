@@ -66,8 +66,8 @@ static void WifiLogin_OnNetCommand(int netId, int size, const void *data, void *
 static void *WifiLogin_GetInfo(void *work);
 static int WifiLogin_GetInfoSize(void *work);
 static int WifiLogin_IsSameGame(int gameCommandBase, int beaconCommandBase);
-static int WifiLogin_GetUserData(void *work);
-static int WifiLogin_GetFriendData(void *work);
+static sptr WifiLogin_GetUserData(void *work);
+static sptr WifiLogin_GetFriendData(void *work);
 static void WifiLogin_OnFriendCode(int code, int param, void *work);
 static void WifiLogin_StateWaitMessageEnd(WifiLoginWork *work);
 static void WifiLogin_StateWaitInputThenExit(WifiLoginWork *work);
@@ -195,16 +195,16 @@ static int WifiLogin_IsSameGame(int gameCommandBase, int beaconCommandBase) {
     return FALSE;
 }
 
-static int WifiLogin_GetUserData(void *work) {
+static sptr WifiLogin_GetUserData(void *work) {
     WifiLoginWork *wk = work;
 
-    return (int)WifiList_GetMyUserData(GameData_GetWifiList(wk->gameData));
+    return (sptr)WifiList_GetMyUserData(GameData_GetWifiList(wk->gameData));
 }
 
-static int WifiLogin_GetFriendData(void *work) {
+static sptr WifiLogin_GetFriendData(void *work) {
     WifiLoginWork *wk = work;
 
-    return (int)WifiList_GetFriendData(GameData_GetWifiList(wk->gameData), 0);
+    return (sptr)WifiList_GetFriendData(GameData_GetWifiList(wk->gameData), 0);
 }
 
 static void WifiLogin_OnFriendCode(int code, int param, void *work) {

@@ -272,7 +272,7 @@ void UnionComm_ActivateGroup(UnionSystem *sys);
 void UnionComm_ClearBeacons(UnionSystem *sys);
 void UnionComm_FreeResources(UnionSystem *sys);
 // Sets a part of this machine's state: a group's target 0 to 3, or the activity for 4
-void UnionComm_SetSelf(UnionSystem *sys, u32 which, u32 value);
+void UnionComm_SetSelf(UnionSystem *sys, u32 which, uptr value);
 // Resets a group, with this machine as its first member
 void UnionGroup_ResetTargets(UnionGroup *group);
 void UnionGroup_Init(UnionSystem *sys, UnionGroup *group);

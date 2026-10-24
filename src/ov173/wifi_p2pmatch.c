@@ -651,8 +651,8 @@ static int WifiP2PMatch_StateReturnTimingWait(WIFIP2PMATCH_WORK *wk, int seq);
 static int WifiP2PMatch_StateGameStart(WIFIP2PMATCH_WORK *wk, int seq);
 static int WifiP2PMatch_StateGameStartFailKeyWait(WIFIP2PMATCH_WORK *wk, int seq);
 static int WifiP2PMatch_StateBattleRecruitStart(WIFIP2PMATCH_WORK *wk, int seq);
-static int WifiP2PMatch_GetUserData(void *work);
-static int WifiP2PMatch_GetFriendData(void *work);
+static sptr WifiP2PMatch_GetUserData(void *work);
+static sptr WifiP2PMatch_GetFriendData(void *work);
 static void WifiP2PMatch_OnFriendCode(int code, int param, void *work);
 static void WifiP2PMatch_NetInit(WIFIP2PMATCH_WORK *wk, BOOL init);
 static u32 WifiP2PMatch_GetStatus(WIFIP2PMATCH_WORK *wk, const WIFI_STATUS *status);
@@ -3354,16 +3354,16 @@ static GFLNetInitData sWifiP2PMatchNetInit = {
     0,
 };
 
-static int WifiP2PMatch_GetUserData(void *work) {
+static sptr WifiP2PMatch_GetUserData(void *work) {
     WIFIP2PMATCH_WORK *wk = work;
 
-    return (int)WifiList_GetMyUserData(GameData_GetWifiList(wk->gameData));
+    return (sptr)WifiList_GetMyUserData(GameData_GetWifiList(wk->gameData));
 }
 
-static int WifiP2PMatch_GetFriendData(void *work) {
+static sptr WifiP2PMatch_GetFriendData(void *work) {
     WIFIP2PMATCH_WORK *wk = work;
 
-    return (int)WifiList_GetFriendData(GameData_GetWifiList(wk->gameData), 0);
+    return (sptr)WifiList_GetFriendData(GameData_GetWifiList(wk->gameData), 0);
 }
 
 static void WifiP2PMatch_OnFriendCode(int code, int param, void *work) {

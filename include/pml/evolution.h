@@ -33,6 +33,6 @@ typedef struct {
 // The species the Pokémon evolves into, or 0. a3 depends on the mode: the zone for EVO_CHECK_LEVEL_UP, the partner
 // PartyPkm for EVO_CHECK_TRADE, the item for the two item modes. method, if not NULL, gets the evolution's method.
 // An Everstone stops the check in every mode but EVO_CHECK_ITEM; no caller uses EVO_CHECK_ITEM_UNUSED
-u16 CheckEvolveSpecies(PokeParty *party, PartyPkm *pkm, u32 mode, u32 a3, u8 season, u32 *method, HeapID heapId);
+u16 CheckEvolveSpecies(PokeParty *party, PartyPkm *pkm, u32 mode, uptr a3, u8 season, u32 *method, HeapID heapId);
 
 #endif // POKEBW2_PML_EVOLUTION_H

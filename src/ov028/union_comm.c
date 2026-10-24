@@ -569,7 +569,7 @@ void UnionComm_FreeResources(UnionSystem *unisys) {
     }
 }
 
-void UnionComm_SetSelf(UnionSystem *unisys, u32 which, u32 value) {
+void UnionComm_SetSelf(UnionSystem *unisys, u32 which, uptr value) {
     UnionSelf *self = &unisys->situ;
 
     switch (which) {

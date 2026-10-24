@@ -1453,7 +1453,7 @@ static void Mystery_CreateList(MysteryWork *wk, u32 type, HeapID heapId) {
             break;
         case LIST_RECEIVED:
             setup.msgData = NULL;
-            setup.items[0] = (u32)GFL_StrBufCreate(37, heapId);
+            setup.items[0] = (uptr)GFL_StrBufCreate(37, heapId);
             GFL_StrBufLoadFixedString((StrBuf *)setup.items[0], wk->recv.gift.title, 37);
             setup.count = 1;
             setup.offsetY = -1;

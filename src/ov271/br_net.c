@@ -72,7 +72,7 @@ static void BrNetSeq_SetNext(BrNetSeq *p_wk, BrNetSeqFunc func);
 static BOOL BrNetSeq_IsComp(const BrNetSeq *cp_wk, BrNetSeqFunc func);
 static u32 BrNet_EventFunc(void *work, int a1, int event, int a3);
 
-BrNet *BrNet_Init(GameData *gameData, u32 a1, HeapID heapId) {
+BrNet *BrNet_Init(GameData *gameData, uptr a1, HeapID heapId) {
     BrNet *net;
     GdsRapInit init;
 
